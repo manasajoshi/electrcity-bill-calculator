@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Electricity bill calculator</title>
+		<style type="text/css">
+			
+			#box{
+				width: 500px;
+				height: 320px;
+				position: absolute;
+				left: 30% ;
+				top:25% ;
+				background-color: pink ;
+				display: inline-block;
+			}
+			#box h1{
+				text-align: center;
+			}
+			.content{
+				margin: 20px;
+			}
+			#button{
+				margin-left: 285px;
+			}
+
+		</style>
+	</head>
+	<body >
+		<div id="box">
+			<h1> Electricity Bill Calculator</h1>
+				<div class="content">
+					<form name="Reading" onsubmit="return 0;">
+						Enter Previous Meter Reading:<input type="number" id ="r1"><br><br><br>
+						Enter Curent Meter Reading:&nbsp&nbsp <input type="number" id ="r2"><br><br>
+						<input type="button" onclick="calculate()" value="Calculate" id="button"></input><br><br>
+					</form>
+					Total Units Consumed =<span id="ec"></span>  <br>
+					Your Total Bill Amount =<span id="t"></span>
+				</div>
+		</div>
+
+		<script type="text/javascript">
+			function calculate(){
+				var a = document.getElementById('r1').value;
+				var b = document.getElementById('r2').value;
+				var r = b - a;
+
+			if (r>0) {
+				document.getElementById('ec').innerHTML= r + "Units" ;
+			}
+			else {
+				alert("Invalid Reading !");
+				document.getElementById("ec").innerHTML = 0 + " unit";
+				document.getElementById("t").innerHTML = "Rs. " + 0;
+				return;
+			}
+
+
+			if (r <= 20) {
+					var total = r * 3 + 30;
+				} else if (r > 20 && r <= 30) {
+					var total = 20 * 3 + (elec-20) * 7 + 50;
+				} else if (r> 30 && r <= 50) {
+					var total = 20 * 3 + 10 * 7 + (r-30) * 8.5 + 75;
+				} else if (r > 50 && r <= 150) {
+					var total = 20 * 3 + 10 * 7 + 20 * 8.5 + (r-50) * 10 + 100;
+				} else if (r > 150 && r <= 250) {
+					var total = 20 * 3 + 10 * 7 + 20 * 8.5 + 100 * 10 + (r-150)*11 + 125;
+				} else if (r > 250 && r <= 400) {
+					var total = 20 * 3 + 10 * 7 + 20 * 8.5 + 100 * 10 + 100 * 11 + (r-250) * 12 + 150;
+				} else {
+					var total = 20 * 3 + 10 * 7 + 20 * 8.5 + 100 * 10 + 100 * 11 + 150 * 12 + (r-400) * 13 + 175;
+				}
+
+				document.getElementById("t").innerHTML = "Rs. " + total;
+			}
+         
+			
+		</script>
+
+
+	</body>
+</html>
